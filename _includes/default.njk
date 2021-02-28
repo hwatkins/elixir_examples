@@ -16,10 +16,9 @@
     <script src="/js/alpine.js?v={% version %}"></script>
   </head>
   <body>
-    <div class="container mx-auto">
       {% block content %}
         {{ content | safe }}
       {% endblock %}
-    </div>
+    {% include "_footer.njk" %}
   </body>
 </html>
