@@ -1,0 +1,13 @@
+name: elixir-examples
+region: nyc
+static_sites:
+  - name: elixir-examples
+    github:
+      repo: hwatkins/elixir_examples
+      branch: master
+      deploy_on_push: true
+    build_command: npm install && npx hugo --minify
+    output_dir: public
+    environment_slug: node-js
+    routes:
+      - path: /
