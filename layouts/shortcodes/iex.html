@@ -1,0 +1,14 @@
+<div class="iex-terminal my-6">
+  <div class="terminal-chrome">
+    <span class="terminal-dot bg-red-500"></span>
+    <span class="terminal-dot bg-yellow-500"></span>
+    <span class="terminal-dot bg-green-500"></span>
+    <span class="ml-2 text-xs text-gray-400">IEx</span>
+  </div>
+  <div class="terminal-body">
+    <pre><code>{{ $lines := split .Inner "\n" }}{{ range $lines }}{{ if hasPrefix . "iex>" }}<span class="iex-prompt">iex&gt;</span><span class="iex-input">{{ . | replaceRE `^iex>` "" }}</span>
+{{ else if hasPrefix . "...>" }}<span class="iex-prompt">...&gt;</span><span class="iex-input">{{ . | replaceRE `^\.\.\.>` "" }}</span>
+{{ else if ne . "" }}<span class="iex-output">{{ . }}</span>
+{{ end }}{{ end }}</code></pre>
+  </div>
+</div>

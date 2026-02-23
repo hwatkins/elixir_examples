@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+    line-height: 1.7;
+  }
+}
+
+@layer components {
+  /* Syntax highlighting overrides for Chroma */
+  .highlight pre {
+    @apply rounded-lg p-4 overflow-x-auto text-sm font-mono;
+  }
+
+  .highlight code {
+    @apply font-mono;
+  }
+
+  /* Plain/untagged code blocks - ensure good contrast */
+  .prose pre:not(.chroma) {
+    @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg p-4 text-sm font-mono overflow-x-auto;
+  }
+
+  .prose pre:not(.chroma) code {
+    @apply text-gray-800 dark:text-gray-200 bg-transparent;
+  }
+
+  /* IEx terminal styling - use !important to override prose */
+  .iex-terminal {
+    @apply bg-gray-900 rounded-lg overflow-hidden shadow-lg;
+  }
+
+  .iex-terminal .terminal-chrome {
+    @apply flex items-center gap-1.5 px-4 py-2 bg-gray-800;
+  }
+
+  .iex-terminal .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .iex-terminal .terminal-body {
+    @apply p-4 font-mono text-sm overflow-x-auto;
+  }
+
+  .iex-terminal .terminal-body pre {
+    background-color: transparent !important;
+    color: #f1f5f9 !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .iex-terminal .terminal-body code {
+    background-color: transparent !important;
+    color: #f1f5f9 !important;
+  }
+
+  .iex-terminal .iex-prompt {
+    color: #c084fc !important;
+    font-weight: 700;
+    user-select: none;
+  }
+
+  .iex-terminal .iex-input {
+    color: #ffffff !important;
+  }
+
+  .iex-terminal .iex-output {
+    color: #6ee7b7 !important;
+  }
+
+  /* Compare tabs */
+  .compare-box {
+    @apply border rounded-lg overflow-hidden;
+    @apply border-gray-200 dark:border-gray-700;
+  }
+
+  .compare-box .tab-bar {
+    @apply flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800;
+  }
+
+  .compare-box .tab-btn {
+    @apply px-4 py-2 text-sm font-medium transition-colors;
+    @apply text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200;
+  }
+
+  .compare-box .tab-btn.active {
+    @apply text-elixir-700 dark:text-elixir-400 border-b-2 border-elixir-600 dark:border-elixir-400 bg-white dark:bg-gray-900;
+  }
+
+  .compare-box .tab-panel {
+    @apply hidden;
+  }
+
+  .compare-box .tab-panel.active {
+    @apply block;
+  }
+
+  /* Callout boxes */
+  .callout {
+    @apply rounded-lg p-4 my-6 border-l-4;
+  }
+
+  .callout-tip {
+    @apply bg-green-50 border-green-500 dark:bg-green-900/20 dark:border-green-400;
+  }
+
+  .callout-warning {
+    @apply bg-amber-50 border-amber-500 dark:bg-amber-900/20 dark:border-amber-400;
+  }
+
+  .callout-note {
+    @apply bg-blue-50 border-blue-500 dark:bg-blue-900/20 dark:border-blue-400;
+  }
+
+  .callout-important {
+    @apply bg-red-50 border-red-500 dark:bg-red-900/20 dark:border-red-400;
+  }
+
+  /* Exercise block */
+  .exercise-block {
+    @apply rounded-lg p-5 my-6 border-l-4 border-elixir-600 bg-elixir-50 dark:bg-elixir-900/20 dark:border-elixir-400;
+  }
+
+  /* Concept card */
+  .concept-card {
+    @apply rounded-lg p-5 my-6 border border-elixir-200 dark:border-elixir-800 bg-white dark:bg-gray-800 shadow-sm;
+  }
+
+  /* Sidebar navigation */
+  .sidebar-link {
+    @apply block py-1.5 px-3 text-sm rounded transition-colors;
+    @apply text-gray-600 dark:text-gray-400 hover:text-elixir-700 dark:hover:text-elixir-300 hover:bg-elixir-50 dark:hover:bg-elixir-900/20;
+  }
+
+  .sidebar-link.active {
+    @apply text-elixir-700 dark:text-elixir-300 bg-elixir-50 dark:bg-elixir-900/30 font-medium;
+  }
+
+  /* Difficulty badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-beginner {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400;
+  }
+
+  .badge-intermediate {
+    @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400;
+  }
+
+  .badge-advanced {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400;
+  }
+}

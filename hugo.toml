@@ -1,0 +1,42 @@
+baseURL = "https://elixirexamples.com"
+languageCode = "en-us"
+title = "Elixir Examples"
+enableGitInfo = true
+
+[params]
+  description = "Learn Elixir through practical examples and side-by-side comparisons with Python, JavaScript, Go, and Rust. 31 structured lessons from basics to OTP, Phoenix, and deployment."
+  author = "Elixir Examples"
+  github = "https://github.com/hwatkins/elixir_examples"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+    noClasses = false
+    style = "dracula"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[outputFormats.RSS]
+  mediatype = "application/rss+xml"
+  baseName = "feed"
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[taxonomies]
+  tag = "tags"
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.110.0"

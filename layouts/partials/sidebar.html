@@ -1,0 +1,77 @@
+{{ $currentPage := . }}
+<nav id="sidebar" class="w-64 shrink-0 border-r border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50 overflow-y-auto hidden lg:block">
+  <div class="p-4 space-y-1">
+    {{ range (site.GetPage "/").Sections }}
+      {{ $sectionActive := or (.IsAncestor $currentPage) (eq . $currentPage) }}
+      <div class="mb-2" x-data="{ open: {{ if $sectionActive }}true{{ else }}false{{ end }} }">
+        <!-- Phase header -->
+        <button @click="open = !open" class="flex items-center justify-between w-full py-2 px-3 text-sm font-semibold rounded transition-colors {{ if $sectionActive }}text-elixir-700 dark:text-elixir-300{{ else }}text-gray-700 dark:text-gray-300{{ end }} hover:bg-gray-100 dark:hover:bg-gray-800">
+          <span class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold {{ if $sectionActive }}bg-elixir-600 text-white{{ else }}bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400{{ end }}">
+              {{ strings.TrimLeft "0" (index (split .File.Dir "/") 0 | replaceRE `^(\d+)-.*` "$1") }}
+            </span>
+            {{ .Title }}
+          </span>
+          <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-90': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+        <!-- Lessons in phase -->
+        <div x-show="open" x-transition class="ml-4 mt-1 space-y-0.5">
+          {{ range .Pages }}
+            {{ $isActive := eq . $currentPage }}
+            <a href="{{ .RelPermalink }}" class="sidebar-link {{ if $isActive }}active{{ end }}">
+              {{ .Title }}
+              {{ with .Params.difficulty }}
+                <span class="inline-block w-2 h-2 rounded-full ml-1 {{ if eq . "beginner" }}bg-green-400{{ else if eq . "intermediate" }}bg-amber-400{{ else }}bg-red-400{{ end }}"></span>
+              {{ end }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</nav>
+
+<!-- Mobile sidebar overlay -->
+<div id="sidebar-overlay" class="fixed inset-0 z-40 bg-black/50 hidden lg:hidden" onclick="closeSidebar()"></div>
+<nav id="mobile-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-gray-950 border-r border-gray-200 dark:border-gray-800 overflow-y-auto transform -translate-x-full transition-transform lg:hidden">
+  <div class="p-4">
+    <button onclick="closeSidebar()" class="mb-4 p-2 rounded-md text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Close menu">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    {{ range (site.GetPage "/").Sections }}
+      {{ $sectionActive := or (.IsAncestor $currentPage) (eq . $currentPage) }}
+      <div class="mb-2">
+        <div class="py-2 px-3 text-sm font-semibold {{ if $sectionActive }}text-elixir-700 dark:text-elixir-300{{ else }}text-gray-700 dark:text-gray-300{{ end }}">
+          {{ .Title }}
+        </div>
+        <div class="ml-4 space-y-0.5">
+          {{ range .Pages }}
+            {{ $isActive := eq . $currentPage }}
+            <a href="{{ .RelPermalink }}" class="sidebar-link {{ if $isActive }}active{{ end }}" onclick="closeSidebar()">
+              {{ .Title }}
+            </a>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</nav>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', function() {
+      document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
+      document.getElementById('sidebar-overlay').classList.remove('hidden');
+    });
+  }
+  function closeSidebar() {
+    document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+    document.getElementById('sidebar-overlay').classList.add('hidden');
+  }
+</script>

@@ -1,0 +1,91 @@
+{{ define "main" }}
+<main class="flex-1">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-elixir-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-950 dark:to-elixir-950/20"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div class="text-center">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+          <span class="text-gray-900 dark:text-gray-100">Learn </span>
+          <span class="text-elixir-700 dark:text-elixir-400">Elixir</span>
+          <span class="text-gray-900 dark:text-gray-100"> by Example</span>
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          A structured learning path with practical examples and side-by-side comparisons with languages you already know.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/01-foundations/01-getting-started/" class="inline-flex items-center px-6 py-3 rounded-lg bg-elixir-700 text-white font-semibold hover:bg-elixir-800 transition-colors shadow-lg shadow-elixir-700/25">
+            Start Learning
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+          <a href="#curriculum" class="inline-flex items-center px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            View Curriculum
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-16 bg-white dark:bg-gray-950">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-elixir-100 dark:bg-elixir-900/30 text-elixir-700 dark:text-elixir-400 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Learn by Doing</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">Every lesson includes runnable code examples and IEx sessions you can try yourself.</p>
+        </div>
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-elixir-100 dark:bg-elixir-900/30 text-elixir-700 dark:text-elixir-400 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Language Comparisons</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">See Elixir side-by-side with Python, JavaScript, Go, Rust, and more.</p>
+        </div>
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-elixir-100 dark:bg-elixir-900/30 text-elixir-700 dark:text-elixir-400 mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Structured Path</h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">31 lessons across 6 phases, from basics to OTP, Phoenix, and deployment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum Overview -->
+  <section id="curriculum" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center mb-12">Curriculum</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range (site.GetPage "/").Sections }}
+        <a href="{{ .RelPermalink }}" class="group block p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-elixir-300 dark:hover:border-elixir-700 hover:shadow-md transition-all">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-elixir-100 dark:bg-elixir-900/30 text-elixir-700 dark:text-elixir-400 text-sm font-bold">
+              {{ strings.TrimLeft "0" (index (split .File.Dir "/") 0 | replaceRE `^(\d+)-.*` "$1") }}
+            </span>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-elixir-700 dark:group-hover:text-elixir-400 transition-colors">
+              {{ .Title }}
+            </h3>
+          </div>
+          {{ with .Description }}
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">{{ . }}</p>
+          {{ end }}
+          <p class="text-xs text-gray-400 dark:text-gray-500">{{ len .Pages }} lessons</p>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+</main>
+{{ end }}

@@ -1,0 +1,135 @@
+phases:
+  - number: 1
+    title: "Foundations"
+    slug: "01-foundations"
+    difficulty: "beginner"
+    description: "Start your Elixir journey with the basics"
+    lessons:
+      - title: "Getting Started"
+        slug: "01-getting-started"
+        estimatedMinutes: 15
+      - title: "Basic Types"
+        slug: "02-basic-types"
+        estimatedMinutes: 20
+      - title: "Pattern Matching"
+        slug: "03-pattern-matching"
+        estimatedMinutes: 25
+      - title: "Control Flow"
+        slug: "04-control-flow"
+        estimatedMinutes: 20
+
+  - number: 2
+    title: "Core Language"
+    slug: "02-core-language"
+    difficulty: "beginner"
+    description: "Master Elixir's core data structures and idioms"
+    lessons:
+      - title: "Functions"
+        slug: "01-functions"
+        estimatedMinutes: 25
+      - title: "Lists and Tuples"
+        slug: "02-lists-and-tuples"
+        estimatedMinutes: 20
+      - title: "Maps and Keyword Lists"
+        slug: "03-maps-and-keyword-lists"
+        estimatedMinutes: 20
+      - title: "Strings and Binaries"
+        slug: "04-strings"
+        estimatedMinutes: 25
+      - title: "Modules and Structs"
+        slug: "05-modules-and-structs"
+        estimatedMinutes: 25
+      - title: "Enum and Stream"
+        slug: "06-enum"
+        estimatedMinutes: 30
+
+  - number: 3
+    title: "Advanced Language"
+    slug: "03-advanced-language"
+    difficulty: "intermediate"
+    description: "Dive deep into concurrency and OTP"
+    lessons:
+      - title: "Recursion"
+        slug: "01-recursion"
+        estimatedMinutes: 25
+      - title: "Processes"
+        slug: "02-processes"
+        estimatedMinutes: 30
+      - title: "GenServer"
+        slug: "03-genserver"
+        estimatedMinutes: 35
+      - title: "Supervisors"
+        slug: "04-supervisors"
+        estimatedMinutes: 30
+      - title: "OTP Applications"
+        slug: "05-otp-apps"
+        estimatedMinutes: 25
+
+  - number: 4
+    title: "Practical Development"
+    slug: "04-practical-development"
+    difficulty: "intermediate"
+    description: "Real-world tooling, testing, and best practices"
+    lessons:
+      - title: "Mix in Depth"
+        slug: "01-mix"
+        estimatedMinutes: 25
+      - title: "Testing with ExUnit"
+        slug: "02-testing"
+        estimatedMinutes: 30
+      - title: "Documentation"
+        slug: "03-documentation"
+        estimatedMinutes: 20
+      - title: "Error Handling"
+        slug: "04-error-handling"
+        estimatedMinutes: 25
+      - title: "IO and File System"
+        slug: "05-io-and-files"
+        estimatedMinutes: 20
+
+  - number: 5
+    title: "Advanced Topics"
+    slug: "05-advanced-topics"
+    difficulty: "advanced"
+    description: "Protocols, metaprogramming, and advanced features"
+    lessons:
+      - title: "Protocols and Behaviours"
+        slug: "01-protocols-and-behaviours"
+        estimatedMinutes: 30
+      - title: "Typespecs and Dialyzer"
+        slug: "02-typespecs"
+        estimatedMinutes: 25
+      - title: "Metaprogramming"
+        slug: "03-metaprogramming"
+        estimatedMinutes: 35
+      - title: "Comprehensions"
+        slug: "04-comprehensions"
+        estimatedMinutes: 20
+      - title: "Sigils"
+        slug: "05-sigils"
+        estimatedMinutes: 15
+
+  - number: 6
+    title: "Web and Distributed"
+    slug: "06-web-and-distributed"
+    difficulty: "advanced"
+    description: "Phoenix, LiveView, Ecto, and distributed systems"
+    lessons:
+      - title: "Phoenix Framework"
+        slug: "01-phoenix"
+        estimatedMinutes: 35
+      - title: "LiveView"
+        slug: "02-liveview"
+        estimatedMinutes: 35
+      - title: "Ecto"
+        slug: "03-ecto"
+        estimatedMinutes: 35
+      - title: "Nerves"
+        slug: "04-nerves"
+        estimatedMinutes: 25
+      - title: "Distribution"
+        slug: "05-distribution"
+        estimatedMinutes: 30
+      - title: "Deployment"
+        slug: "06-deployment"
+        estimatedMinutes: 30

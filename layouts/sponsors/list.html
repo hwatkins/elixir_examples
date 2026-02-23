@@ -1,0 +1,76 @@
+{{ define "main" }}
+<main class="flex-1">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">Sponsors</h1>
+    <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
+      Elixir Examples is a free, open-source learning resource. Our sponsors make it possible to keep this site running and the content growing.
+    </p>
+
+    <!-- Featured Sponsor -->
+    <div class="rounded-xl border-2 border-elixir-200 dark:border-elixir-800 bg-white dark:bg-gray-800 p-8 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 mb-6">
+        <span class="badge badge-intermediate">Featured Sponsor</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-start gap-6">
+        <div class="flex-1">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+            <a href="https://mergate.com" target="_blank" rel="noopener" class="hover:text-elixir-700 dark:hover:text-elixir-400 transition-colors">
+              Mergate
+            </a>
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+            Need custom Elixir software built by experts? Mergate specializes in building robust, scalable applications with Elixir, Phoenix, and LiveView. From greenfield projects to migrating existing systems onto the BEAM, their team brings deep Elixir expertise to every engagement.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <svg class="w-4 h-4 text-elixir-600 dark:text-elixir-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              Custom Elixir &amp; Phoenix development
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <svg class="w-4 h-4 text-elixir-600 dark:text-elixir-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              Real-time applications with LiveView
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <svg class="w-4 h-4 text-elixir-600 dark:text-elixir-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              OTP architecture &amp; distributed systems
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+              <svg class="w-4 h-4 text-elixir-600 dark:text-elixir-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+              Team augmentation &amp; consulting
+            </li>
+          </ul>
+          <a href="https://mergate.com" target="_blank" rel="noopener" class="inline-flex items-center px-6 py-3 rounded-lg bg-elixir-700 text-white font-semibold hover:bg-elixir-800 transition-colors shadow-lg shadow-elixir-700/25">
+            Visit mergate.com
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Become a Sponsor -->
+    <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-8 py-12 text-center">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Become a Sponsor</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-lg mx-auto">
+        Interested in supporting Elixir education and getting your company in front of developers learning Elixir? We'd love to hear from you.
+      </p>
+      <a href="mailto:sponsor@elixirexamples.com" class="inline-flex items-center px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold hover:bg-white dark:hover:bg-gray-800 transition-colors">
+        Get in Touch
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</main>
+{{ end }}

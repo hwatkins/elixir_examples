@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{- partial "sidebar.html" . -}}
+
+<main class="flex-1 min-w-0">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">{{ .Title }}</h1>
+
+    {{ with .Description }}
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">{{ . }}</p>
+    {{ end }}
+
+    {{ if .Content }}
+      <div class="prose prose-lg dark:prose-invert max-w-none mb-8">
+        {{ .Content }}
+      </div>
+    {{ end }}
+
+    <!-- List of lessons in this section -->
+    {{ if .Pages }}
+    <div class="space-y-3">
+      {{ range .Pages }}
+      <a href="{{ .RelPermalink }}" class="block group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-elixir-300 dark:hover:border-elixir-700 hover:shadow-sm transition-all">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-elixir-700 dark:group-hover:text-elixir-400 transition-colors">
+              {{ .Title }}
+            </h3>
+            {{ with .Description }}
+              <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ . }}</p>
+            {{ end }}
+          </div>
+          <div class="flex items-center gap-3 ml-4 shrink-0">
+            {{ with .Params.difficulty }}
+              <span class="badge badge-{{ . }}">{{ . | title }}</span>
+            {{ end }}
+            {{ with .Params.estimatedMinutes }}
+              <span class="text-xs text-gray-400 dark:text-gray-500">{{ . }} min</span>
+            {{ end }}
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-elixir-600 dark:group-hover:text-elixir-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

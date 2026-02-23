@@ -1,0 +1,53 @@
+{{/* Build ordered list of all lessons across all phases */}}
+{{ $allLessons := slice }}
+{{ range (site.GetPage "/").Sections }}
+  {{ range .Pages }}
+    {{ $allLessons = $allLessons | append . }}
+  {{ end }}
+{{ end }}
+
+{{ $currentIndex := -1 }}
+{{ range $i, $p := $allLessons }}
+  {{ if eq $p.RelPermalink $.RelPermalink }}
+    {{ $currentIndex = $i }}
+  {{ end }}
+{{ end }}
+
+{{ if ge $currentIndex 0 }}
+{{ $prev := false }}
+{{ $next := false }}
+{{ if gt $currentIndex 0 }}
+  {{ $prev = index $allLessons (sub $currentIndex 1) }}
+{{ end }}
+{{ if lt (add $currentIndex 1) (len $allLessons) }}
+  {{ $next = index $allLessons (add $currentIndex 1) }}
+{{ end }}
+
+{{ if or $prev $next }}
+<nav class="flex items-stretch gap-4 mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+  {{ with $prev }}
+  <a href="{{ .RelPermalink }}" class="flex-1 group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-elixir-300 dark:hover:border-elixir-700 transition-colors">
+    <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      Previous
+    </span>
+    <span class="block mt-1 font-medium text-gray-900 dark:text-gray-100 group-hover:text-elixir-700 dark:group-hover:text-elixir-400 transition-colors">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <div class="flex-1"></div>
+  {{ end }}
+
+  {{ with $next }}
+  <a href="{{ .RelPermalink }}" class="flex-1 group p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-elixir-300 dark:hover:border-elixir-700 transition-colors text-right">
+    <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center justify-end gap-1">
+      Next
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </span>
+    <span class="block mt-1 font-medium text-gray-900 dark:text-gray-100 group-hover:text-elixir-700 dark:group-hover:text-elixir-400 transition-colors">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <div class="flex-1"></div>
+  {{ end }}
+</nav>
+{{ end }}
+{{ end }}

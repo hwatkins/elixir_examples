@@ -1,0 +1,13 @@
+{{ with .Params.hexdocsLinks }}
+<div class="mt-6 space-y-2">
+  <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300">Further Reading on HexDocs</h4>
+  {{ range . }}
+  <a href="{{ .url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-2 text-sm rounded-lg bg-elixir-50 dark:bg-elixir-900/20 text-elixir-700 dark:text-elixir-400 hover:bg-elixir-100 dark:hover:bg-elixir-900/40 transition-colors">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+    </svg>
+    {{ .title }}
+  </a>
+  {{ end }}
+</div>
+{{ end }}

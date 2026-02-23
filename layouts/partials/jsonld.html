@@ -1,0 +1,61 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.author }}"
+  }
+}
+</script>
+{{ else if .IsSection }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "numberOfItems": {{ len .Pages }},
+  "itemListElement": [
+    {{ range $i, $p := .Pages }}{{ if $i }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $i 1 }},
+      "url": "{{ $p.Permalink }}",
+      "name": "{{ $p.Title }}"
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "url": "{{ .Permalink }}",
+  {{ with .Params.difficulty }}"proficiencyLevel": "{{ . | title }}",{{ end }}
+  {{ with .Params.estimatedMinutes }}"timeRequired": "PT{{ . }}M",{{ end }}
+  "author": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Params.author }}"
+  },
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ .Site.Title }}",
+    "url": "{{ .Site.BaseURL }}"
+  }
+}
+</script>
+{{ end }}

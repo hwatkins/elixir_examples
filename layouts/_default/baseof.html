@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+  {{- partial "header.html" . -}}
+  <div class="flex-1 flex">
+    {{- block "main" . }}{{ end -}}
+  </div>
+  {{- partial "footer.html" . -}}
+
+  <!-- Alpine.js for interactive components -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <script>
+    // Compare tabs: auto-detect code blocks and create tabs
+    document.querySelectorAll('[data-compare]').forEach(function(box) {
+      var panels = box.querySelector('[data-compare-panels]');
+      var tabBar = box.querySelector('[data-compare-tabs]');
+      var codeBlocks = panels.querySelectorAll('.highlight');
+      if (codeBlocks.length === 0) return;
+
+      var langNames = {
+        'elixir': 'Elixir', 'python': 'Python', 'javascript': 'JavaScript',
+        'js': 'JavaScript', 'ruby': 'Ruby', 'go': 'Go', 'rust': 'Rust',
+        'java': 'Java', 'typescript': 'TypeScript', 'ts': 'TypeScript',
+        'csharp': 'C#', 'cpp': 'C++', 'c': 'C', 'haskell': 'Haskell',
+        'erlang': 'Erlang', 'swift': 'Swift', 'kotlin': 'Kotlin'
+      };
+
+      codeBlocks.forEach(function(block, i) {
+        var lang = '';
+        var code = block.querySelector('code');
+        if (code) {
+          var cls = Array.from(code.classList).find(function(c) { return c.startsWith('language-'); });
+          if (cls) lang = cls.replace('language-', '');
+        }
+        if (!lang) {
+          var pre = block.querySelector('pre');
+          if (pre) {
+            var pcls = Array.from(pre.classList).find(function(c) { return c.startsWith('language-'); });
+            if (pcls) lang = pcls.replace('language-', '');
+          }
+        }
+        // Try from chroma class
+        if (!lang) {
+          var chroma = block.className.match(/language-(\w+)/);
+          if (chroma) lang = chroma[1];
+        }
+
+        var label = langNames[lang] || lang || 'Code ' + (i + 1);
+
+        var btn = document.createElement('button');
+        btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = label;
+        btn.addEventListener('click', function() {
+          tabBar.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          codeBlocks.forEach(function(b, j) {
+            b.style.display = j === i ? 'block' : 'none';
+          });
+        });
+        tabBar.appendChild(btn);
+
+        if (i > 0) block.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
