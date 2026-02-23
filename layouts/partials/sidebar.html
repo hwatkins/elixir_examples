@@ -2,6 +2,7 @@
 <nav id="sidebar" class="w-64 shrink-0 border-r border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-900/50 overflow-y-auto hidden lg:block">
   <div class="p-4 space-y-1">
     {{ range (site.GetPage "/").Sections }}
+      {{ if not (eq .Section "sponsors") }}
       {{ $sectionActive := or (.IsAncestor $currentPage) (eq . $currentPage) }}
       <div class="mb-2" x-data="{ open: {{ if $sectionActive }}true{{ else }}false{{ end }} }">
         <!-- Phase header -->
@@ -30,6 +31,7 @@
           {{ end }}
         </div>
       </div>
+      {{ end }}
     {{ end }}
   </div>
 </nav>
@@ -44,6 +46,7 @@
       </svg>
     </button>
     {{ range (site.GetPage "/").Sections }}
+      {{ if not (eq .Section "sponsors") }}
       {{ $sectionActive := or (.IsAncestor $currentPage) (eq . $currentPage) }}
       <div class="mb-2">
         <div class="py-2 px-3 text-sm font-semibold {{ if $sectionActive }}text-elixir-700 dark:text-elixir-300{{ else }}text-gray-700 dark:text-gray-300{{ end }}">
@@ -58,6 +61,7 @@
           {{ end }}
         </div>
       </div>
+      {{ end }}
     {{ end }}
   </div>
 </nav>

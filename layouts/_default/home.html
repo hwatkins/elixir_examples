@@ -69,6 +69,7 @@
       <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center mb-12">Curriculum</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {{ range (site.GetPage "/").Sections }}
+        {{ if not (eq .Section "sponsors") }}
         <a href="{{ .RelPermalink }}" class="group block p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-elixir-300 dark:hover:border-elixir-700 hover:shadow-md transition-all">
           <div class="flex items-center gap-3 mb-3">
             <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-elixir-100 dark:bg-elixir-900/30 text-elixir-700 dark:text-elixir-400 text-sm font-bold">
@@ -83,6 +84,7 @@
           {{ end }}
           <p class="text-xs text-gray-400 dark:text-gray-500">{{ len .Pages }} lessons</p>
         </a>
+        {{ end }}
         {{ end }}
       </div>
     </div>
