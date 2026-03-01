@@ -1,30 +1,71 @@
+{{- $title := printf "%s | %s" .Title .Site.Title -}}
+{{- if .IsHome -}}
+  {{- $title = "Elixir Examples - Learn Elixir by Example with Code Comparisons" -}}
+{{- end -}}
+{{- $rawDescription := .Description | default .Site.Params.description -}}
+{{- $description := $rawDescription | plainify | htmlUnescape | truncate 160 -}}
+{{- $robots := "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" -}}
+{{- if or .Draft .Params.noindex -}}
+  {{- $robots = "noindex,nofollow" -}}
+{{- end -}}
+{{- $canonicalURL := .Permalink -}}
+{{- $socialTitle := .Title -}}
+{{- if .IsHome -}}
+  {{- $socialTitle = "Elixir Examples - Learn Elixir by Example" -}}
+{{- end -}}
+{{- $ogImage := "images/og-default.png" | absURL -}}
+{{- with .Params.og_image -}}
+  {{- if hasPrefix . "http" -}}
+    {{- $ogImage = . -}}
+  {{- else -}}
+    {{- $ogImage = . | absURL -}}
+  {{- end -}}
+{{- end -}}
+{{- $ogImageAlt := printf "%s social preview image" .Site.Title -}}
+{{- if not .IsHome -}}
+  {{- $ogImageAlt = printf "%s on %s" .Title .Site.Title -}}
+{{- end -}}
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}Elixir Examples - Learn Elixir by Example with Code Comparisons{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
 <meta name="author" content="{{ .Site.Params.author }}">
+<meta name="robots" content="{{ $robots }}">
+<meta name="googlebot" content="{{ $robots }}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="{{ .Permalink }}">
+<link rel="canonical" href="{{ $canonicalURL }}">
+<link rel="alternate" hreflang="en" href="{{ $canonicalURL }}">
+<link rel="alternate" hreflang="x-default" href="{{ $canonicalURL }}">
+{{ with .OutputFormats.Get "RSS" -}}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+{{- end }}
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ if .IsHome }}Elixir Examples - Learn Elixir by Example{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:title" content="{{ $socialTitle }}">
+<meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:url" content="{{ $canonicalURL }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
-<meta property="og:image" content="{{ "images/og-default.png" | absURL }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $ogImageAlt }}">
 {{ if .IsPage -}}
+{{ with .CurrentSection }}<meta property="article:section" content="{{ .Title }}">{{ end }}
 {{ with .Date }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
 {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+{{ with .Params.tags }}{{ range first 8 . }}<meta property="article:tag" content="{{ . }}">{{ end }}{{ end }}
 {{- end }}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ if .IsHome }}Elixir Examples - Learn Elixir by Example{{ else }}{{ .Title }}{{ end }}">
-<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="{{ "images/og-default.png" | absURL }}">
+<meta name="twitter:title" content="{{ $socialTitle }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
+{{ with .Site.Params.twitter -}}<meta name="twitter:site" content="{{ . }}">{{- end }}
 
 <!-- JSON-LD Structured Data -->
 {{ partial "jsonld.html" . }}

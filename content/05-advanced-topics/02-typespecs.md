@@ -23,6 +23,10 @@ tags:
   - static-analysis
   - spec
   - types
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir is a dynamically typed language, but it has a rich type annotation system built in. **Typespecs** let you document the expected types of function arguments and return values. **Dialyzer** is a static analysis tool that reads these annotations (along with inferred types) and detects type inconsistencies, unreachable code, and other defects -- all without running your program.
@@ -334,3 +338,14 @@ end
 ## Summary
 
 Typespecs bring structured type documentation to Elixir without sacrificing its dynamic nature. They serve as machine-readable documentation that helps both developers and tools understand your code. Dialyzer reads these annotations and uses success typing to find real bugs with zero false positives. The investment of adding `@spec`, `@type`, and `@callback` annotations pays off in clearer APIs, better documentation, and automated defect detection -- especially as your codebase grows.
+
+## FAQ and Troubleshooting
+
+### Why is my Typespecs and Dialyzer example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

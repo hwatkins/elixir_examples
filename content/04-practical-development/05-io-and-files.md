@@ -25,6 +25,10 @@ tags:
   - path
   - streams
   - file-system
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Working with input/output and the file system is fundamental to most applications. Elixir provides a clean set of modules for these operations: `IO` for reading and writing to standard IO and other devices, `File` for file system operations, `Path` for manipulating file paths portably, and `File.stream!` for processing large files without loading them entirely into memory.

@@ -24,6 +24,10 @@ tags:
   - with
   - exceptions
   - let-it-crash
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Error handling in Elixir is fundamentally different from most languages. Instead of relying primarily on exceptions and try/catch, Elixir uses a combination of return-value-based error handling (ok/error tuples), pattern matching, and the OTP "let it crash" philosophy. Exceptions exist but are reserved for truly unexpected situations, not for normal control flow.

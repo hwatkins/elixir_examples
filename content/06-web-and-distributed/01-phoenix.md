@@ -26,6 +26,10 @@ tags:
   - router
   - controllers
   - components
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Phoenix is the most popular web framework in the Elixir ecosystem. It leverages the Erlang VM's ability to handle millions of concurrent connections while maintaining developer productivity with conventions inspired by the best ideas in web development. Phoenix gives you real-time features out of the box, excellent performance, and a delightful developer experience.
@@ -393,3 +397,14 @@ Create a new Phoenix project and build a simple JSON API for a bookshelf applica
 ## Summary
 
 Phoenix gives you a productive, convention-driven framework that leverages the BEAM's strengths. The architecture -- endpoint, router, pipelines, controllers, components -- provides clear separation of concerns while keeping request processing fast and transparent. Plugs compose cleanly at every layer, and the context pattern keeps your business logic independent from your web interface. In the next lesson, you will explore LiveView, which builds on Phoenix to deliver rich, real-time user interfaces without writing JavaScript.
+
+## FAQ and Troubleshooting
+
+### Why is my Phoenix Framework example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

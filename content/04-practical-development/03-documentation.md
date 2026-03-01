@@ -23,6 +23,10 @@ tags:
   - doctests
   - exdoc
   - typespecs
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir treats documentation as a first-class feature of the language. Documentation is written directly in source code using module attributes, supports full Markdown formatting, can include executable examples that double as tests, and generates beautiful HTML documentation with ExDoc. The Elixir community has some of the best library documentation in any ecosystem, and the tooling makes it easy to maintain that standard.

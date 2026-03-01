@@ -24,6 +24,10 @@ tags:
   - supervision-trees
   - let-it-crash
   - restart-strategies
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 In most languages, an unhandled error crashes your application. You write defensive code, wrap everything in try/catch, and hope for the best. Elixir takes a radically different approach: instead of preventing crashes, you **embrace them** and build systems that automatically recover. Supervisors are the mechanism that makes this possible.

@@ -26,6 +26,10 @@ tags:
   - use
   - documentation
   - module-attributes
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Modules are Elixir's primary organizational unit. Every named function lives inside a module, and modules provide namespacing, documentation, and a home for custom data types called structs. This lesson covers the full module system: defining modules, using module attributes for documentation and constants, creating structs, and the four directives (`alias`, `import`, `require`, `use`) that control how modules interact.

@@ -23,6 +23,10 @@ tags:
   - data-structures
   - pattern-matching
   - access
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Maps and keyword lists are Elixir's primary key-value data structures. Maps are the go-to choice for general-purpose key-value storage with fast lookups. Keyword lists serve a specialized role as ordered collections of key-value pairs, most commonly used for function options. This lesson covers both, including when to choose one over the other.

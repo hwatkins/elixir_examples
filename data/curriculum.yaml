@@ -47,7 +47,7 @@ phases:
     title: "Advanced Language"
     slug: "03-advanced-language"
     difficulty: "intermediate"
-    description: "Dive deep into concurrency and OTP"
+    description: "Dive deep into concurrency, OTP, ETS, and task orchestration"
     lessons:
       - title: "Recursion"
         slug: "01-recursion"
@@ -64,6 +64,12 @@ phases:
       - title: "OTP Applications"
         slug: "05-otp-apps"
         estimatedMinutes: 25
+      - title: "ETS"
+        slug: "06-ets"
+        estimatedMinutes: 30
+      - title: "Task and Task.Supervisor"
+        slug: "07-task-and-task-supervisor"
+        estimatedMinutes: 30
 
   - number: 4
     title: "Practical Development"
@@ -113,7 +119,7 @@ phases:
     title: "Web and Distributed"
     slug: "06-web-and-distributed"
     difficulty: "advanced"
-    description: "Phoenix, LiveView, Ecto, and distributed systems"
+    description: "Phoenix, LiveView, Ecto, auth, observability, and distributed systems"
     lessons:
       - title: "Phoenix Framework"
         slug: "01-phoenix"
@@ -133,3 +139,40 @@ phases:
       - title: "Deployment"
         slug: "06-deployment"
         estimatedMinutes: 30
+      - title: "Phoenix Authentication"
+        slug: "07-phoenix-authentication"
+        estimatedMinutes: 35
+      - title: "Telemetry and OpenTelemetry"
+        slug: "08-telemetry-and-opentelemetry"
+        estimatedMinutes: 35
+
+  - number: 7
+    title: "Production and Scale"
+    slug: "07-production-and-scale"
+    difficulty: "advanced"
+    description: "Event pipelines, background jobs, runtime operations, security, testing, and performance at scale"
+    lessons:
+      - title: "Broadway and GenStage"
+        slug: "01-broadway-and-genstage"
+        estimatedMinutes: 35
+      - title: "Oban and Reliable Background Jobs"
+        slug: "02-oban-and-reliable-background-jobs"
+        estimatedMinutes: 35
+      - title: "Nx and EXLA for Numerical Computing"
+        slug: "03-nx-and-exla"
+        estimatedMinutes: 35
+      - title: "Umbrella Apps and Monorepo Architecture"
+        slug: "04-umbrella-apps-and-monorepo-architecture"
+        estimatedMinutes: 30
+      - title: "Release Engineering and Runtime Ops"
+        slug: "05-release-engineering-and-runtime-ops"
+        estimatedMinutes: 35
+      - title: "Security Hardening in Phoenix"
+        slug: "06-security-hardening-in-phoenix"
+        estimatedMinutes: 35
+      - title: "Property-Based Testing with StreamData"
+        slug: "07-property-based-testing-with-streamdata"
+        estimatedMinutes: 30
+      - title: "Performance Profiling and Benchmarking"
+        slug: "08-performance-profiling-and-benchmarking"
+        estimatedMinutes: 35

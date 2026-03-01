@@ -23,6 +23,10 @@ tags:
   - collections
   - pattern-matching
   - head-tail
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir provides two fundamental ordered collection types: **lists** and **tuples**. While they may seem similar at first glance, they have different internal representations and are suited for different tasks. Understanding when and why to use each one is essential for writing efficient Elixir code.

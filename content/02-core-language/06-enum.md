@@ -24,6 +24,10 @@ tags:
   - map
   - filter
   - reduce
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 The `Enum` module is the most frequently used module in Elixir. It provides a rich set of functions for transforming, filtering, sorting, and aggregating any collection that implements the `Enumerable` protocol -- including lists, maps, ranges, and streams. This lesson covers the essential Enum functions, how to combine them with the pipe operator, and when to switch to the `Stream` module for lazy evaluation.

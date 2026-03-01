@@ -27,6 +27,10 @@ tags:
   - query
   - migrations
   - transactions
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Ecto is Elixir's database toolkit. It is not an ORM in the traditional sense -- instead, Ecto gives you explicit, composable tools for mapping data to and from your database. Schemas define the shape of your data, changesets validate and track changes, queries compose with pipe-friendly syntax, and the repo provides a clean interface for all database operations.
@@ -433,3 +437,14 @@ Create a `Blog` context module that provides a clean API for working with posts 
 ## Summary
 
 Ecto gives you full control over your data layer with explicit, composable tools. Schemas define the shape and associations of your data. Changesets validate and track changes before they reach the database. The query DSL lets you build queries incrementally with pipe syntax. Migrations manage your schema evolution, and transactions (both simple and via `Ecto.Multi`) ensure data consistency. The explicit nature of Ecto -- no lazy loading, no hidden queries, no magic -- means you always know exactly what your application is doing with your database.
+
+## FAQ and Troubleshooting
+
+### Why is my Ecto example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

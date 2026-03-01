@@ -26,6 +26,10 @@ tags:
   - hardware
   - gpio
   - firmware
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Nerves brings Elixir to embedded systems. It lets you write firmware for devices like Raspberry Pi, BeagleBone, and other ARM-based boards using the same language and OTP patterns you already know. Nerves produces minimal, self-contained firmware images that boot in seconds and leverage the BEAM's fault-tolerance for devices that need to run unattended for months or years.
@@ -428,3 +432,14 @@ Design (on paper or in code) a Nerves application for a smart garden monitor:
 ## Summary
 
 Nerves brings the full power of Elixir and OTP to embedded systems. The BEAM's reliability -- supervision trees, process isolation, hot code upgrades -- solves the hardest problems in embedded development: devices that must run unattended, recover from failures automatically, and accept updates over the network. With libraries like `circuits_gpio` for hardware interaction, `VintageNet` for networking, and `NervesHub` for OTA updates, Nerves provides a complete platform for building production IoT devices in Elixir.
+
+## FAQ and Troubleshooting
+
+### Why is my Nerves example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

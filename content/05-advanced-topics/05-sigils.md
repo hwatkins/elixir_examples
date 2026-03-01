@@ -23,6 +23,10 @@ tags:
   - word-lists
   - dates
   - custom-sigils
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Sigils are one of Elixir's mechanisms for working with textual representations of data. A sigil starts with the tilde `~` followed by a letter that determines its type, then delimiters surrounding the content. They provide a concise way to create strings, regular expressions, word lists, charlists, dates, times, and more -- and you can define your own.
@@ -318,3 +322,14 @@ Bonus: Make a `~J` (uppercase) version that does not support interpolation, for 
 ## Summary
 
 Sigils provide a concise, readable syntax for creating common data types from textual representations. The lowercase/uppercase convention (interpolation vs raw) is consistent across all sigils and easy to remember. The built-in sigils cover the most common needs -- strings, charlists, regexes, word lists, and date/time types -- while the custom sigil mechanism lets you extend the language for your domain. Combined with compile-time validation (as seen with date sigils), sigils help you write expressive code with fewer errors.
+
+## FAQ and Troubleshooting
+
+### Why is my Sigils example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

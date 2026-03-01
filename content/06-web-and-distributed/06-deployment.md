@@ -26,6 +26,10 @@ tags:
   - observer
   - logging
   - fly.io
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Deploying Elixir applications means compiling your code into a standalone release, configuring it for the target environment, and running it on infrastructure where it can be monitored and maintained. Elixir's `mix release` produces self-contained bundles that include the Erlang runtime, your compiled code, and all dependencies -- no Elixir or Erlang installation required on the production server.
@@ -578,3 +582,14 @@ Verify that `curl http://localhost:4000/health` returns a 200 status with your h
 ## Summary
 
 Deploying Elixir applications is a well-defined process. `mix release` produces self-contained artifacts that include everything needed to run. Runtime configuration via `config/runtime.exs` keeps secrets and environment-specific values out of the build. Multi-stage Docker builds create small, secure production images. Health checks and telemetry give visibility into running systems. The BEAM's built-in monitoring tools -- from `:observer` to LiveDashboard -- let you inspect processes, memory, and queries in real time. With platforms like Fly.io offering native clustering support, taking an Elixir application from development to a scaled production deployment is straightforward.
+
+## FAQ and Troubleshooting
+
+### Why is my Deployment example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

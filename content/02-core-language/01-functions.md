@@ -21,6 +21,10 @@ tags:
   - pipe-operator
   - guards
   - pattern-matching
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Functions are the fundamental building blocks of Elixir programs. Unlike object-oriented languages where behavior lives inside classes, Elixir organizes code into modules containing named functions. You will also encounter anonymous functions, which are first-class values that can be passed around like any other data. This lesson covers the full range of function features that make Elixir expressive and powerful.

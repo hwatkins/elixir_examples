@@ -1,0 +1,47 @@
+{{/* Render 2-4 nearby internal lesson links for SEO and reader navigation */}}
+{{ $allLessons := slice }}
+{{ range (site.GetPage "/").Sections }}
+  {{ if not (eq .Section "sponsors") }}
+    {{ range .Pages }}
+      {{ $allLessons = $allLessons | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $currentIndex := -1 }}
+{{ range $i, $p := $allLessons }}
+  {{ if eq $p.RelPermalink $.RelPermalink }}
+    {{ $currentIndex = $i }}
+  {{ end }}
+{{ end }}
+
+{{ if ge $currentIndex 0 }}
+  {{ $prev1 := false }}
+  {{ $prev2 := false }}
+  {{ $next1 := false }}
+  {{ $next2 := false }}
+  {{ if gt $currentIndex 0 }}{{ $prev1 = index $allLessons (sub $currentIndex 1) }}{{ end }}
+  {{ if gt $currentIndex 1 }}{{ $prev2 = index $allLessons (sub $currentIndex 2) }}{{ end }}
+  {{ if lt (add $currentIndex 1) (len $allLessons) }}{{ $next1 = index $allLessons (add $currentIndex 1) }}{{ end }}
+  {{ if lt (add $currentIndex 2) (len $allLessons) }}{{ $next2 = index $allLessons (add $currentIndex 2) }}{{ end }}
+
+  {{ if or $prev1 $prev2 $next1 $next2 }}
+  <section class="mt-10 p-5 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/40">
+    <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">Related Lessons</h2>
+    <ul class="space-y-2">
+      {{ with $prev2 }}
+      <li><a class="text-elixir-700 dark:text-elixir-400 hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+      {{ with $prev1 }}
+      <li><a class="text-elixir-700 dark:text-elixir-400 hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+      {{ with $next1 }}
+      <li><a class="text-elixir-700 dark:text-elixir-400 hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+      {{ with $next2 }}
+      <li><a class="text-elixir-700 dark:text-elixir-400 hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+{{ end }}

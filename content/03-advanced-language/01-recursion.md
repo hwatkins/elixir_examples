@@ -20,6 +20,10 @@ tags:
   - tail-call
   - accumulator
   - functional-programming
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Recursion is the fundamental looping mechanism in functional programming. While Elixir provides `Enum` and `Stream` for most collection work, understanding recursion is essential -- it underpins how those modules work internally and gives you the flexibility to solve problems that don't fit neatly into existing abstractions.

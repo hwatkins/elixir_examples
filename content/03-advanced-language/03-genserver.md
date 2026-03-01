@@ -21,6 +21,10 @@ tags:
   - processes
   - state-management
   - callbacks
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 In the previous lesson, you built a stateful process by hand using `spawn`, `receive`, and recursion. That pattern works, but it requires you to handle a lot of boilerplate: the receive loop, timeouts, process registration, and error handling. **GenServer** (Generic Server) is an OTP behaviour that extracts all of that boilerplate into a battle-tested framework, letting you focus on the logic that matters.

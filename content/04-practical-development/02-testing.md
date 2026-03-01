@@ -24,6 +24,10 @@ tags:
   - doctests
   - mocking
   - mox
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir ships with ExUnit, a full-featured testing framework built into the standard library. Tests in Elixir are first-class citizens -- the community expects thorough test coverage, and the tooling makes it straightforward to write, organize, and run tests efficiently.

@@ -24,6 +24,10 @@ tags:
   - charlists
   - string-module
   - parsing
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Strings in Elixir are UTF-8 encoded binaries. This means that every double-quoted string like `"hello"` is actually a sequence of bytes in memory, and Elixir provides full Unicode support out of the box. This lesson covers everything from basic string operations to the binary underpinnings, the String module, charlists, and parsing strings into numeric types.

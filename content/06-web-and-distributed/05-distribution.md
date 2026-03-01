@@ -26,6 +26,10 @@ tags:
   - rpc
   - pg
   - libcluster
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 The Erlang VM was designed from the start for distributed computing. Multiple BEAM instances -- called nodes -- can connect to each other and communicate transparently. Processes on one node can send messages to processes on another node using the same syntax as local message passing. This built-in distribution makes it possible to build systems that span multiple machines with remarkably little additional complexity.
@@ -441,3 +445,14 @@ Build a distributed word counter that splits work across connected nodes:
 ## Summary
 
 Distributed Elixir is built on foundations that the BEAM has refined over decades. Connecting nodes is as simple as giving them names and calling `Node.connect/1`. Message passing works transparently across nodes. `:rpc` provides straightforward remote function calls. `:global` gives you cluster-wide name registration. `:pg` organizes processes into groups for pub/sub and work distribution. `libcluster` automates node discovery for production deployments. Combined, these tools let you scale from a single node to a cluster of machines with minimal changes to your application code.
+
+## FAQ and Troubleshooting
+
+### Why is my Distribution example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

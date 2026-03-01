@@ -23,6 +23,10 @@ tags:
   - configuration
   - mix
   - supervision-trees
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 You have learned how to build stateful processes with GenServer and organize them into fault-tolerant supervision trees. The final piece of the OTP puzzle is the **Application** -- the standard way to package, configure, start, and stop a complete system of supervised processes as a single unit.

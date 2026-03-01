@@ -23,6 +23,10 @@ tags:
   - websocket
   - phoenix
   - components
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Phoenix LiveView lets you build rich, interactive user interfaces without writing custom JavaScript. It works by maintaining a persistent WebSocket connection between the browser and the server. When something changes, LiveView computes the minimal diff and pushes only the changed parts over the wire. The result is a snappy, real-time experience backed entirely by server-side Elixir code.
@@ -487,3 +491,14 @@ Think about: What happens to the LiveView process when a user navigates away? Ho
 ## Summary
 
 LiveView brings real-time interactivity to Phoenix applications with pure server-side Elixir. The programming model is straightforward: mount state, render HTML, handle events. Streams make it efficient to manage large collections, live components let you encapsulate reusable stateful UI, and PubSub integration means broadcasting updates to all connected users is trivial. Because each LiveView is just a process, you have all the power of OTP at your disposal -- supervision, message passing, and concurrent computation all work naturally within LiveView.
+
+## FAQ and Troubleshooting
+
+### Why is my LiveView example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

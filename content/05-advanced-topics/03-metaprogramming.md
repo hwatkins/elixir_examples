@@ -24,6 +24,10 @@ tags:
   - unquote
   - AST
   - compile-time
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Metaprogramming is the art of writing code that writes code. In Elixir, metaprogramming is built on a simple idea: Elixir code can be represented as Elixir data structures. This representation is called the **Abstract Syntax Tree** (AST), and macros are functions that receive AST fragments and return new AST fragments at compile time.
@@ -372,3 +376,14 @@ Extend it: make the macro accept an optional label, so `debug_value(x + 1, label
 Elixir's metaprogramming system is built on three pillars: the AST (a uniform representation of code as data), `quote`/`unquote` (for constructing and interpolating AST fragments), and `defmacro` (for defining compile-time code transformations). The `use` pattern leverages `__using__/1` to inject functionality into modules, and it is the foundation for many libraries you will encounter.
 
 The power of macros comes with responsibility. Write functions first, reach for macros only when you need compile-time code generation, and always prioritize readability. When used judiciously, macros let you build expressive, boilerplate-free APIs that feel like natural extensions of the language.
+
+## FAQ and Troubleshooting
+
+### Why is my Metaprogramming example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

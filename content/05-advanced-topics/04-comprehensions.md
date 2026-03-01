@@ -22,6 +22,10 @@ tags:
   - filters
   - into
   - reduce
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir's `for` comprehension is a powerful construct that combines generation, filtering, and collection into a single expression. If you have used list comprehensions in Python or LINQ in C#, Elixir's version will feel familiar -- but it goes further with support for multiple generators, arbitrary collectables, reductions, and bitstring generators.
@@ -288,3 +292,14 @@ text = "the cat sat on the mat the cat"
 ## Summary
 
 Elixir's `for` comprehension is a versatile tool that combines generation, filtering, transformation, and collection into a single readable expression. With multiple generators you can express Cartesian products and dependent iteration. Filters and pattern matching let you select exactly the data you need. The `:into` option targets any collectable, `:reduce` threads an accumulator for fold operations, and `:uniq` deduplicates output. Bitstring generators open up binary data parsing. Together, these features make comprehensions a natural fit for many data transformation tasks.
+
+## FAQ and Troubleshooting
+
+### Why is my Comprehensions example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

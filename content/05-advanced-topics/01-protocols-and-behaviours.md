@@ -24,6 +24,10 @@ tags:
   - defprotocol
   - defimpl
   - callbacks
+keyTakeaways:
+  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
+  - "You can use the primary APIs and patterns shown here to build working solutions"
+  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
 ---
 
 Elixir provides two complementary mechanisms for defining contracts and achieving polymorphism: **protocols** and **behaviours**. Protocols dispatch based on the data type of the first argument, giving you ad-hoc polymorphism without inheritance. Behaviours define a set of function signatures that a module must implement, acting as a compile-time contract.
@@ -338,3 +342,14 @@ end
 ## Summary
 
 Protocols and behaviours are two sides of Elixir's approach to polymorphism and contracts. Protocols give you type-based dispatch that is extensible after the fact -- you can implement a protocol for types you did not define. Behaviours give you compile-time guarantees that a module provides the functions your system expects. Together, they let you build flexible, well-structured systems without the coupling that comes with inheritance hierarchies.
+
+## FAQ and Troubleshooting
+
+### Why is my Protocols and Behaviours example failing even though the code looks right?
+Most failures come from runtime context, not syntax: incorrect app configuration, missing dependencies, process lifecycle timing, or environment-specific settings. Re-run with smaller examples, inspect intermediate values, and verify each prerequisite from this lesson before combining patterns.
+
+### How do I debug this topic in a production-like setup?
+Start with reproducible local steps, add structured logs around boundaries, and isolate one moving part at a time. Prefer deterministic tests for the core logic, then layer integration checks for behavior that depends on supervisors, networked services, or external systems.
+
+### What should I optimize first?
+Prioritize correctness and observability before performance tuning. Once behavior is stable, profile the hot paths, remove unnecessary work, and only then introduce advanced optimizations.

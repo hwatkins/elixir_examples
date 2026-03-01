@@ -1,61 +1,121 @@
-{{ if .IsHome }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "{{ .Site.Title }}",
-  "url": "{{ .Site.BaseURL }}",
-  "description": "{{ .Site.Params.description }}",
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{ .Site.Params.author }}"
-  }
-}
-</script>
-{{ else if .IsSection }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "{{ .Title }}",
-  "description": "{{ .Description }}",
-  "numberOfItems": {{ len .Pages }},
-  "itemListElement": [
-    {{ range $i, $p := .Pages }}{{ if $i }},{{ end }}
-    {
-      "@type": "ListItem",
-      "position": {{ add $i 1 }},
-      "url": "{{ $p.Permalink }}",
-      "name": "{{ $p.Title }}"
-    }
-    {{ end }}
-  ]
-}
-</script>
-{{ else if .IsPage }}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "{{ .Title }}",
-  "description": "{{ .Description }}",
-  "url": "{{ .Permalink }}",
-  {{ with .Params.difficulty }}"proficiencyLevel": "{{ . | title }}",{{ end }}
-  {{ with .Params.estimatedMinutes }}"timeRequired": "PT{{ . }}M",{{ end }}
-  "author": {
-    "@type": "Organization",
-    "name": "{{ .Site.Params.author }}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{ .Site.Params.author }}"
-  },
-  "inLanguage": "en",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "{{ .Site.Title }}",
-    "url": "{{ .Site.BaseURL }}"
-  }
-}
-</script>
-{{ end }}
+{{- $description := .Description | default .Site.Params.description | plainify | htmlUnescape -}}
+
+{{- if .IsHome -}}
+  {{- $website := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" .Site.Title
+    "url" .Site.Home.Permalink
+    "description" $description
+    "inLanguage" "en"
+    "publisher" (dict
+      "@type" "Organization"
+      "name" .Site.Params.author
+      "url" .Site.Home.Permalink
+    )
+  -}}
+<script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- else if .IsSection -}}
+  {{- $items := slice -}}
+  {{- range $i, $p := .RegularPages -}}
+    {{- $items = $items | append (dict
+      "@type" "ListItem"
+      "position" (add $i 1)
+      "name" $p.Title
+      "url" $p.Permalink
+    ) -}}
+  {{- end -}}
+  {{- $section := dict
+    "@context" "https://schema.org"
+    "@type" "ItemList"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+    "numberOfItems" (len .RegularPages)
+    "itemListElement" $items
+    "isPartOf" (dict
+      "@type" "WebSite"
+      "name" .Site.Title
+      "url" .Site.Home.Permalink
+    )
+  -}}
+<script type="application/ld+json">{{ $section | jsonify | safeJS }}</script>
+{{- else if .IsPage -}}
+  {{- $article := dict
+    "@context" "https://schema.org"
+    "@type" "TechArticle"
+    "headline" .Title
+    "description" $description
+    "url" .Permalink
+    "inLanguage" "en"
+    "wordCount" .WordCount
+    "mainEntityOfPage" (dict
+      "@type" "WebPage"
+      "@id" .Permalink
+    )
+    "author" (dict
+      "@type" "Organization"
+      "name" .Site.Params.author
+      "url" .Site.Home.Permalink
+    )
+    "publisher" (dict
+      "@type" "Organization"
+      "name" .Site.Params.author
+      "url" .Site.Home.Permalink
+    )
+    "isPartOf" (dict
+      "@type" "WebSite"
+      "name" .Site.Title
+      "url" .Site.Home.Permalink
+    )
+  -}}
+  {{- with .Date -}}
+    {{- $article = merge $article (dict "datePublished" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+  {{- end -}}
+  {{- with .Lastmod -}}
+    {{- $article = merge $article (dict "dateModified" (.Format "2006-01-02T15:04:05Z07:00")) -}}
+  {{- end -}}
+  {{- with .Params.difficulty -}}
+    {{- $article = merge $article (dict "proficiencyLevel" (. | title)) -}}
+  {{- end -}}
+  {{- with .Params.estimatedMinutes -}}
+    {{- $article = merge $article (dict "timeRequired" (printf "PT%dM" .)) -}}
+  {{- end -}}
+  {{- with .Params.tags -}}
+    {{- $article = merge $article (dict "keywords" .) -}}
+  {{- end -}}
+<script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+{{- end -}}
+
+{{- if not .IsHome -}}
+  {{- $crumbs := slice (dict
+    "@type" "ListItem"
+    "position" 1
+    "name" "Home"
+    "item" .Site.Home.Permalink
+  ) -}}
+  {{- $position := 2 -}}
+  {{- if .IsPage -}}
+    {{- with .CurrentSection -}}
+      {{- $crumbs = $crumbs | append (dict
+        "@type" "ListItem"
+        "position" $position
+        "name" .Title
+        "item" .Permalink
+      ) -}}
+      {{- $position = add $position 1 -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $crumbs = $crumbs | append (dict
+    "@type" "ListItem"
+    "position" $position
+    "name" .Title
+    "item" .Permalink
+  ) -}}
+  {{- $breadcrumb := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" $crumbs
+  -}}
+<script type="application/ld+json">{{ $breadcrumb | jsonify | safeJS }}</script>
+{{- end -}}
