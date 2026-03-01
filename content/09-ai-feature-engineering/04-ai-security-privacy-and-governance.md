@@ -1,13 +1,15 @@
 ---
 title: "AI Security, Privacy, and Governance"
 description: "Protect users and organizations with security, privacy, and policy controls for AI-driven Elixir applications."
-weight: 8
-phase: 8
-lesson: 51
+weight: 4
+phase: 9
+lesson: 55
 difficulty: "advanced"
 estimatedMinutes: 35
 draft: false
 date: 2026-03-01
+aliases:
+  - /08-career-and-ai-development/08-ai-security-privacy-and-governance/
 prerequisites:
   - "/06-web-and-distributed/07-phoenix-authentication"
   - "/07-production-and-scale/06-security-hardening-in-phoenix"
@@ -28,6 +30,11 @@ keyTakeaways:
   - "AI systems need explicit controls for data access, redaction, retention, and auditability"
   - "Security and privacy policy must be enforced in code paths, not only documentation"
   - "Governance requires change history for prompts, models, policy decisions, and exceptions"
+faq:
+  - question: "Will strict redaction reduce model quality?"
+    answer: "It can in some workflows. Use policy-based selective redaction and test quality impact with evals so you can balance privacy protection and task performance."
+  - question: "Who should own AI governance in a team?"
+    answer: "Use shared ownership: engineering implements controls, security/compliance defines policy requirements, and product/legal participate in exception and incident decisions."
 ---
 
 AI features introduce new risk surfaces: sensitive inputs, model-provider boundaries, prompt manipulation, and output misuse. Security and privacy controls must be built into the implementation and operations workflow.
@@ -163,6 +170,8 @@ defmodule MyApp.AI.Policy do
   end
 end
 ```
+
+This is a baseline starting point. Real prompt injection defense requires layered controls including input classification, output validation, and model-level safety settings. A static blocklist alone is not sufficient protection.
 
 Policy checks should run before provider calls and be covered by tests.
 

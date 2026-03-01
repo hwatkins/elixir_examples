@@ -85,6 +85,40 @@
     {{- $article = merge $article (dict "keywords" .) -}}
   {{- end -}}
 <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+
+  {{- with .Params.faq -}}
+    {{- $mainEntity := slice -}}
+    {{- range . -}}
+      {{- $questionVal := or (index . "question") (index . "Question") -}}
+      {{- $answerVal := or (index . "answer") (index . "Answer") -}}
+      {{- $question := "" -}}
+      {{- $answer := "" -}}
+      {{- with $questionVal -}}
+        {{- $question = printf "%v" . | plainify | htmlUnescape -}}
+      {{- end -}}
+      {{- with $answerVal -}}
+        {{- $answer = printf "%v" . | plainify | htmlUnescape -}}
+      {{- end -}}
+      {{- if and $question $answer -}}
+        {{- $mainEntity = $mainEntity | append (dict
+          "@type" "Question"
+          "name" $question
+          "acceptedAnswer" (dict
+            "@type" "Answer"
+            "text" $answer
+          )
+        ) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if gt (len $mainEntity) 0 -}}
+      {{- $faq := dict
+        "@context" "https://schema.org"
+        "@type" "FAQPage"
+        "mainEntity" $mainEntity
+      -}}
+<script type="application/ld+json">{{ $faq | jsonify | safeJS }}</script>
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
 
 {{- if not .IsHome -}}

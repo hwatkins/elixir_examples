@@ -1,13 +1,15 @@
 ---
 title: "AI Observability, Cost, and Runtime Ops"
 description: "Run AI features with telemetry, budget controls, latency SLOs, and production incident runbooks."
-weight: 7
-phase: 8
-lesson: 50
+weight: 3
+phase: 9
+lesson: 54
 difficulty: "advanced"
 estimatedMinutes: 35
 draft: false
 date: 2026-03-01
+aliases:
+  - /08-career-and-ai-development/07-ai-observability-cost-and-runtime-ops/
 prerequisites:
   - "/06-web-and-distributed/08-telemetry-and-opentelemetry"
   - "/06-web-and-distributed/06-deployment"
@@ -30,6 +32,11 @@ keyTakeaways:
   - "AI operations require metrics for quality, latency, error rate, and spend"
   - "Budget and rate controls must exist at request, tenant, and system levels"
   - "Runbooks and alert thresholds should be defined before incident day"
+faq:
+  - question: "If I can only build one dashboard first, what should it include?"
+    answer: "Start with latency percentiles, error rate, fallback activation, and spend trend by provider/model. These four signals usually drive first-response decisions."
+  - question: "My alerts are noisy. What should I tune first?"
+    answer: "Tune thresholds using baseline traffic windows, add alert suppression for known maintenance, and route lower-severity signals to review queues instead of paging."
 ---
 
 Shipping an AI feature is only the beginning. Reliability and cost can degrade quickly without explicit operational controls.

@@ -20,6 +20,11 @@ keyTakeaways:
   - "Role-aligned positioning is stronger than generic language-agnostic branding"
   - "Outcome-first resume bullets with concrete metrics improve interview conversion"
   - "GitHub repositories should optimize for reviewer comprehension, not volume"
+faq:
+  - question: "What if I do not have production metrics?"
+    answer: "Use controlled benchmark or reliability proxy metrics and label them clearly. Credible, bounded evidence is better than vague claims."
+  - question: "Should I include every repository on my profile?"
+    answer: "No. Highlight a curated set of strong projects that match your target role and archive or de-emphasize low-signal repos."
 ---
 
 This lesson focuses on packaging your Elixir work so hiring teams can evaluate it quickly and accurately.

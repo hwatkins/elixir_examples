@@ -4,7 +4,7 @@ title = "Elixir Examples"
 enableGitInfo = true
 
 [params]
-  description = "Learn Elixir through practical examples and side-by-side comparisons with Python, JavaScript, Go, and Rust. 43 structured lessons from basics to OTP, Phoenix, and production-scale operations."
+  description = "Learn Elixir through practical examples and side-by-side comparisons with Python, JavaScript, Go, and Rust. 55 structured lessons from basics to OTP, Phoenix, production-scale operations, career development, and AI feature engineering."
   author = "Elixir Examples"
   github = "https://github.com/hwatkins/elixir_examples"
 

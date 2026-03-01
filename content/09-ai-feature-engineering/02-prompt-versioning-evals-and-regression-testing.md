@@ -1,13 +1,15 @@
 ---
 title: "Prompt Versioning, Evals, and Regression Testing"
 description: "Implement prompt version control, evaluation harnesses, and regression gates for safer AI feature releases."
-weight: 6
-phase: 8
-lesson: 49
+weight: 2
+phase: 9
+lesson: 53
 difficulty: "advanced"
 estimatedMinutes: 35
 draft: false
 date: 2026-03-01
+aliases:
+  - /08-career-and-ai-development/06-prompt-versioning-evals-and-regression-testing/
 prerequisites:
   - "/04-practical-development/02-testing"
   - "/07-production-and-scale/07-property-based-testing-with-streamdata"
@@ -22,6 +24,11 @@ keyTakeaways:
   - "Prompt changes need version control, review, and rollback just like code"
   - "Reliable eval datasets are required to catch quality regressions before release"
   - "Release gates should combine quality, latency, and cost constraints"
+faq:
+  - question: "Evals are expensive. How can I keep costs controlled?"
+    answer: "Use a tiered approach: run a small deterministic smoke set on every change and a larger semantic set on scheduled or release branches. Cache fixtures and limit model size for routine checks."
+  - question: "Outputs are non-deterministic. How do I avoid flaky tests?"
+    answer: "Use threshold-based assertions on required properties instead of exact string matches. Keep temperature stable in tests and evaluate trends across enough fixtures."
 ---
 
 Prompt updates can silently change product behavior. Treat prompts as versioned artifacts with tests and release gates.
@@ -107,7 +114,7 @@ defmodule MyApp.AI.Evals.Runner do
 
   def run_case(prompt_template, vars, rubric) do
     with {:ok, rendered} <- Prompts.render(prompt_template, vars),
-         request <- %{model: "gpt-4.1-mini", messages: [%{role: "user", content: rendered}]},
+         request <- %{model: "gpt-4o-mini", messages: [%{role: "user", content: rendered}]},
          {:ok, %{response: response}} <- ChatService.generate(request, timeout: 15_000) do
       score(response.content, rubric)
     end

@@ -20,6 +20,11 @@ keyTakeaways:
   - "Elixir roles map to distinct ownership patterns: product backend, platform, and staff-level architecture"
   - "A focused 90-day roadmap with public proof of work beats broad unfocused study"
   - "Interview and compensation outcomes improve when you show measurable system impact"
+faq:
+  - question: "I am transitioning from another backend stack. Where should I focus first?"
+    answer: "Start with role clarity and one flagship project that proves production ownership in Elixir. Reuse your prior system design experience, but demonstrate it with Elixir-specific tooling and runtime decisions."
+  - question: "How many projects do I need before applying?"
+    answer: "Two strong, well-documented projects are usually enough when they show delivery, reliability, and operational judgment. Quality and depth matter more than volume."
 ---
 
 This lesson helps you turn technical Elixir skills into career outcomes. The goal is to choose a target role, build evidence that matches that role, and communicate your value clearly.

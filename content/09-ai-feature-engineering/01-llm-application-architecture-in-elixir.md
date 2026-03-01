@@ -1,13 +1,15 @@
 ---
 title: "LLM Application Architecture in Elixir"
 description: "Design reliable LLM-backed features with Phoenix, Oban, retries, and provider abstraction in Elixir systems."
-weight: 5
-phase: 8
-lesson: 48
+weight: 1
+phase: 9
+lesson: 52
 difficulty: "advanced"
 estimatedMinutes: 35
 draft: false
 date: 2026-03-01
+aliases:
+  - /08-career-and-ai-development/05-llm-application-architecture-in-elixir/
 prerequisites:
   - "/06-web-and-distributed/01-phoenix"
   - "/06-web-and-distributed/08-telemetry-and-opentelemetry"
@@ -30,13 +32,14 @@ keyTakeaways:
   - "LLM architecture should separate synchronous user flow from asynchronous orchestration"
   - "Provider behavior abstractions reduce vendor lock-in and simplify fallback design"
   - "Retries, budgets, and observability must be designed before shipping AI features"
+faq:
+  - question: "Should I start with synchronous or asynchronous workflows?"
+    answer: "Start synchronous for short, low-risk interactions that must return immediately. Use asynchronous jobs when calls are slow, retry-prone, or involve multi-step orchestration."
+  - question: "How many providers should I support initially?"
+    answer: "One provider is fine to start if your abstraction boundary is clean. Add a second provider when reliability, cost, or policy requirements justify fallback complexity."
 ---
 
 LLM features are production features. They need explicit architecture boundaries, failure handling, and operational visibility.
-
-{{< callout type="note" >}}
-If you want AI-native development tooling for Elixir teams, review [Tidewave](https://tidewave.ai). It was created by José Valim (creator of Elixir) and focuses on Elixir/Phoenix developer workflows.
-{{< /callout >}}
 
 ## Core Architecture Pattern
 

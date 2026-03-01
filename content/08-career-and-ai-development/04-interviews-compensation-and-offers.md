@@ -21,6 +21,11 @@ keyTakeaways:
   - "Elixir interview loops reward architecture reasoning and operational judgment"
   - "Offer quality should be evaluated with weighted criteria, not base pay alone"
   - "Negotiation is strongest when anchored to scope, impact, and risk"
+faq:
+  - question: "I keep failing coding rounds. What should I change?"
+    answer: "Practice timed Elixir problems with verbal tradeoff narration and test-first validation. Most misses come from communication and edge-case handling, not syntax gaps alone."
+  - question: "Is it realistic to negotiate if I have limited leverage?"
+    answer: "Yes. Even small adjustments can be negotiated when tied to role scope and expected ownership. Ask clearly, use evidence, and prioritize total package quality over one number."
 ---
 
 Interview success depends on preparation that mirrors real engineering work. This lesson covers technical preparation, offer analysis, and practical negotiation.

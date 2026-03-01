@@ -21,6 +21,11 @@ keyTakeaways:
   - "A portfolio should prove ownership from feature design to production operations"
   - "Each project needs artifacts that show reliability, failure handling, and measured outcomes"
   - "Two deep, well-documented projects are stronger than many shallow demos"
+faq:
+  - question: "Can I use work projects if code is private?"
+    answer: "Yes. Share sanitized architecture notes, outcomes, and incident lessons without exposing proprietary code or data. Public proof can be process and decision quality, not source access alone."
+  - question: "I only have small projects. Is that a problem?"
+    answer: "Not if they are complete and well-documented. A small, polished project with tests, runbook, and metrics is stronger than a large unfinished demo."
 ---
 
 A strong Elixir portfolio is evidence of execution under real constraints. Hiring teams evaluate whether you can design, ship, operate, and improve systems.
