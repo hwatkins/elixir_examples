@@ -58,7 +58,7 @@ Example structure:
 # Project: MyApp
 
 ## Architecture
-- Phoenix 1.7 with LiveView
+- Phoenix 1.8 with LiveView 1.1
 - Oban for background jobs
 - Multi-tenant with tenant_id scoping
 
