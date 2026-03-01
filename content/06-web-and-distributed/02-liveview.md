@@ -18,6 +18,8 @@ hexdocsLinks:
   - title: "LiveView Streams"
     url: "https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream/4"
 tags:
+  - production-clinic
+  - clinic-liveview-architecture
   - liveview
   - real-time
   - websocket
@@ -487,6 +489,83 @@ Build a LiveView-powered todo list with the following features:
 
 Think about: What happens to the LiveView process when a user navigates away? How does the stream handle items being inserted and deleted? What is the role of `@myself` in the live component's event handlers?
 {{< /exercise >}}
+
+## Production Clinic: LiveView Architecture
+
+Recurring production issues in LiveView are usually architecture and process-boundary problems, not template syntax issues.
+
+Common failure modes:
+
+- long-running work done directly in `handle_event/3` causing UI stalls,
+- overgrown socket assigns leading to memory pressure,
+- coupling domain logic to LiveView modules instead of contexts,
+- too many broad PubSub broadcasts causing noisy diffs.
+
+Decision checklist:
+
+1. Is this interaction truly real-time or would request/response be simpler?
+2. Are expensive tasks pushed to supervised async work instead of blocking callbacks?
+3. Is transient UI state kept in the socket while durable state lives in the domain layer?
+4. Are stream inserts/deletes used for large collections instead of full list reassignments?
+5. Are PubSub topics scoped narrowly enough to avoid unnecessary updates?
+
+Runbook snippet:
+
+1. Capture p95 event handling time and reconnect rates during peak traffic.
+2. Inspect process memory growth for long-lived LiveView sessions.
+3. Identify top events by volume and move expensive ones to async workflows.
+4. Verify diff size and render frequency before and after each optimization.
+
+## Production Clinic: LiveView vs React/Vue Decision Matrix
+
+This is a recurring team debate. The best answer depends on product interaction style, team composition, and operational constraints.
+
+### Decision Matrix
+
+| Constraint or Goal | LiveView-first usually wins | React/Vue SPA usually wins |
+| --- | --- | --- |
+| Team is backend-heavy | Yes | Not usually |
+| Need fast server-rendered first paint/SEO | Yes | Depends on SSR setup |
+| Highly interactive offline-capable client experience | Usually no | Yes |
+| Complex client-side visualization/editor tooling | Sometimes | Often yes |
+| Want one language/runtime across stack | Yes | No |
+| Existing mature frontend component ecosystem required | Maybe | Yes |
+
+### Practical Rules of Thumb
+
+Choose **LiveView-first** when:
+
+- your core workflows are form-driven, data-driven, or real-time collaborative,
+- your team prefers server-side ownership of UI state and business logic,
+- operational simplicity and consistency are higher priority than client-side autonomy.
+
+Choose **React/Vue-first** when:
+
+- the product needs heavy client-side interactivity that must stay responsive without server round-trips,
+- the team already has strong frontend platform ownership and component infrastructure,
+- advanced browser-side state management is a primary requirement.
+
+### Hybrid Pattern (Common in Production)
+
+A common compromise is **LiveView shell + targeted JS islands**:
+
+1. Keep routing, auth, and most forms in LiveView.
+2. Mount React/Vue components only for interaction-heavy surfaces.
+3. Exchange data through clear boundaries (events, JSON endpoints, or hooks).
+4. Keep domain logic in Elixir contexts, not duplicated in client code.
+
+This pattern avoids all-or-nothing decisions and lets teams adopt JS complexity only where justified.
+
+### Team Workflow Checklist
+
+Before choosing architecture, align on:
+
+1. who owns UI component systems,
+2. who owns performance and bundle/runtime budgets,
+3. how QA validates real-time behavior and client-side edge cases,
+4. how observability covers both browser and server signals.
+
+If ownership is unclear, architecture quality degrades regardless of framework choice.
 
 ## Summary
 

@@ -23,10 +23,12 @@ tags:
   - static-analysis
   - spec
   - types
+  - static-types
+  - type-system
 keyTakeaways:
-  - "You can explain the core ideas in this lesson and when to apply them in Elixir projects"
-  - "You can use the primary APIs and patterns shown here to build working solutions"
-  - "You can spot common mistakes for this topic and choose more idiomatic approaches"
+  - "Typespecs and Dialyzer are the practical baseline for typed reasoning in Elixir today"
+  - "Dialyzer's success typing catches proven defects but does not provide full compile-time guarantees"
+  - "You can design APIs that work well now and stay compatible with richer future type tooling"
 ---
 
 Elixir is a dynamically typed language, but it has a rich type annotation system built in. **Typespecs** let you document the expected types of function arguments and return values. **Dialyzer** is a static analysis tool that reads these annotations (along with inferred types) and detects type inconsistencies, unreachable code, and other defects -- all without running your program.
@@ -334,6 +336,49 @@ defmodule Account do
 end
 ```
 {{< /exercise >}}
+
+## Modern Type-System Direction in Elixir
+
+Typespecs plus Dialyzer remain the primary production path for static analysis in Elixir today. At the same time, the community has active work and discussion around richer typing models (including set-theoretic approaches) to improve expressiveness and tooling feedback.
+
+What this means in practice right now:
+
+1. Keep using `@spec`, `@type`, and `@callback` for API contracts.
+2. Run Dialyzer in CI for regression detection.
+3. Prefer precise, composable type definitions over broad `term()` usage in public APIs.
+
+### Why This Matters for Your Codebase
+
+If your type contracts are clear and consistent today, you can adopt improved tooling later with less churn. Poorly defined specs create migration friction regardless of which future checker you choose.
+
+Practical habits that age well:
+
+- define module-level `t()` types for structs,
+- use union types to model domain states explicitly,
+- avoid overly broad specs when domain constraints are known,
+- keep behavior callback specs precise and documented.
+
+### Example: Tightening a Public API Spec
+
+```elixir
+defmodule Payments do
+  @type currency :: :usd | :eur | :gbp
+  @type amount :: pos_integer()
+  @type transfer_error :: :insufficient_funds | :account_locked | :invalid_currency
+
+  @spec transfer(String.t(), String.t(), amount(), currency()) ::
+          :ok | {:error, transfer_error()}
+  def transfer(from_id, to_id, amount, currency) do
+    # implementation omitted
+  end
+end
+```
+
+This style gives better guidance to humans today and is easier to analyze by current and future type tooling.
+
+{{< callout type="note" >}}
+Treat modern Elixir typing as an evolving stack: build with typespec discipline now, keep Dialyzer in your feedback loop, and follow Elixir release notes for new type-system capabilities as they mature.
+{{< /callout >}}
 
 ## Summary
 

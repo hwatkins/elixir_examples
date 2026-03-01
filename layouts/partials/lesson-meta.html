@@ -3,6 +3,21 @@
   {{ with .difficulty }}
     <span class="badge badge-{{ . }}">{{ . | title }}</span>
   {{ end }}
+  {{ $tags := .tags | default (slice) }}
+  {{ if in $tags "production-clinic" }}
+    <span class="badge badge-clinic">Production Clinic</span>
+  {{ end }}
+  {{ $clinicLabels := dict
+    "clinic-deployment" "Clinic: Deployment"
+    "clinic-liveview-architecture" "Clinic: LiveView Architecture"
+    "clinic-ecto-production" "Clinic: Ecto in Production"
+    "clinic-oban-ops" "Clinic: Oban Operations"
+  }}
+  {{ range $tags }}
+    {{ with index $clinicLabels . }}
+      <span class="badge badge-clinic-topic">{{ . }}</span>
+    {{ end }}
+  {{ end }}
   {{ with .estimatedMinutes }}
     <span class="flex items-center gap-1 text-gray-500 dark:text-gray-400">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

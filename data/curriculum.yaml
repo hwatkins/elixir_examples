@@ -176,3 +176,34 @@ phases:
       - title: "Performance Profiling and Benchmarking"
         slug: "08-performance-profiling-and-benchmarking"
         estimatedMinutes: 35
+
+  - number: 8
+    title: "Career and AI Development"
+    slug: "08-career-and-ai-development"
+    difficulty: "advanced"
+    description: "Translate Elixir skills into career growth and build production-grade AI features with Elixir"
+    lessons:
+      - title: "Career Roadmap and Role Landscape"
+        slug: "01-career-roadmap-and-role-landscape"
+        estimatedMinutes: 25
+      - title: "Portfolio and Proof of Work"
+        slug: "02-portfolio-and-proof-of-work"
+        estimatedMinutes: 30
+      - title: "Resume, GitHub, and Professional Positioning"
+        slug: "03-resume-github-and-professional-positioning"
+        estimatedMinutes: 25
+      - title: "Interviews, Compensation, and Offers"
+        slug: "04-interviews-compensation-and-offers"
+        estimatedMinutes: 30
+      - title: "LLM Application Architecture in Elixir"
+        slug: "05-llm-application-architecture-in-elixir"
+        estimatedMinutes: 35
+      - title: "Prompt Versioning, Evals, and Regression Testing"
+        slug: "06-prompt-versioning-evals-and-regression-testing"
+        estimatedMinutes: 35
+      - title: "AI Observability, Cost, and Runtime Ops"
+        slug: "07-ai-observability-cost-and-runtime-ops"
+        estimatedMinutes: 35
+      - title: "AI Security, Privacy, and Governance"
+        slug: "08-ai-security-privacy-and-governance"
+        estimatedMinutes: 35

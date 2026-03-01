@@ -18,6 +18,8 @@ hexdocsLinks:
   - title: "Config.Provider"
     url: "https://hexdocs.pm/elixir/Config.Provider.html"
 tags:
+  - production-clinic
+  - clinic-deployment
   - deployment
   - release
   - docker
@@ -578,6 +580,33 @@ docker run -p 4000:4000 \
 
 Verify that `curl http://localhost:4000/health` returns a 200 status with your health check JSON.
 {{< /exercise >}}
+
+## Production Clinic: Deployment and Runtime Ops
+
+Deployment issues are often consistency and runtime-configuration failures, not build tool failures.
+
+Common failure modes:
+
+- runtime secrets accidentally baked at compile time,
+- release starts without expected environment variables,
+- migration strategy not aligned with rolling deploy behavior,
+- health checks reporting green while key dependencies are degraded.
+
+Decision checklist:
+
+1. Are all environment-dependent values loaded from `config/runtime.exs`?
+2. Is release startup blocked on required secret presence?
+3. Are schema/data migrations safe for the current deploy strategy?
+4. Does health checking include at least one dependency signal (for example DB connectivity)?
+5. Is there a rollback command path tested in staging?
+
+Runbook snippet:
+
+1. Validate release artifact version and git SHA before rollout.
+2. Run a preflight check for required environment variables.
+3. Deploy one instance/canary and inspect logs, error rate, and health endpoints.
+4. Run migrations with explicit ownership and monitor lock/wait behavior.
+5. Promote rollout only after SLO and health checks remain stable.
 
 ## Summary
 

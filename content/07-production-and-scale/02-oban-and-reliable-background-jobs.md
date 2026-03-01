@@ -20,6 +20,8 @@ hexdocsLinks:
   - title: "Oban Testing"
     url: "https://hexdocs.pm/oban/testing.html"
 tags:
+  - production-clinic
+  - clinic-oban-ops
   - oban
   - background-jobs
   - retries
@@ -134,6 +136,33 @@ Implement a worker flow for transactional emails:
 4. Record delivery attempts and final status in DB.
 5. Add tests for success, retry, and discard cases.
 {{< /exercise >}}
+
+## Production Clinic: Oban Operations
+
+Oban problems in production are usually queue-shape and idempotency design issues.
+
+Common failure modes:
+
+- queue starvation where low-priority jobs block high-priority work,
+- non-idempotent workers causing duplicate side effects during retries,
+- retry storms after downstream provider outages,
+- missing visibility into failed/snoozed job trends.
+
+Decision checklist:
+
+1. Are queues split by SLA and failure profile (`critical`, `default`, `backfill`)?
+2. Do workers guarantee idempotency for all external side effects?
+3. Are retry backoff and max-attempt settings tuned by error class?
+4. Is there an explicit policy for dead/failed job replay?
+5. Are queue depth, retry rate, and failure rate visible in dashboards/alerts?
+
+Runbook snippet:
+
+1. Check queue depth by queue and state (`available`, `scheduled`, `retryable`).
+2. Identify top failing workers and classify transient vs permanent failures.
+3. Throttle or pause non-critical queues during incident containment.
+4. Apply provider fallback/degraded mode and watch retry drain behavior.
+5. Replay dead jobs only after idempotency safeguards are validated.
 
 ## FAQ and Troubleshooting
 

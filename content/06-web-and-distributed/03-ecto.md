@@ -20,6 +20,8 @@ hexdocsLinks:
   - title: "Ecto.Repo"
     url: "https://hexdocs.pm/ecto/Ecto.Repo.html"
 tags:
+  - production-clinic
+  - clinic-ecto-production
   - ecto
   - database
   - schema
@@ -433,6 +435,32 @@ Create a `Blog` context module that provides a clean API for working with posts 
 
 **Bonus:** Write a query that returns the top 5 posts by comment count using `join`, `group_by`, and `order_by`.
 {{< /exercise >}}
+
+## Production Clinic: Ecto in Production
+
+Most production Ecto incidents come from operational query behavior and migration strategy, not schema syntax.
+
+Common failure modes:
+
+- slow queries from missing indexes after feature growth,
+- lock contention from long transactions that bundle too much work,
+- N+1 query spikes from missing preloads in hot paths,
+- risky migrations that combine irreversible data changes with schema changes.
+
+Decision checklist:
+
+1. Does this query path have an index plan validated against real data size?
+2. Can this transaction be shortened or split while preserving correctness?
+3. Are read-heavy paths explicit about preload strategy and selected fields?
+4. Is this migration backward-compatible for rolling deploys?
+5. Are uniqueness and integrity rules enforced at the database level, not only in changesets?
+
+Runbook snippet:
+
+1. Log and rank top slow queries by frequency and p95 duration.
+2. Review lock wait events and identify the transaction owners.
+3. Add/validate indexes in a safe migration path, then re-measure.
+4. Keep a rollback path for every migration and verify it in staging.
 
 ## Summary
 
